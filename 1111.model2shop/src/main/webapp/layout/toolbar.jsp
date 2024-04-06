@@ -118,10 +118,32 @@
 			}); 
 		 });
 		
+		 $(function() {
 		//=============  개인정보조회회 Event  처리 =============	
 	 	$( "a:contains('개인정보조회')" ).on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
 		});
+		
+		
+	 	$( "a:contains('판매상품등록')" ).on("click" , function() {
+	 		$(self.location).attr("href","/product/addProduct");
+		}); 
+		
+		$( "a:contains('판매상품관리')" ).on("click" , function() {
+	 		$(self.location).attr("href","/product/listProduct?menu=manage");
+		}); 
+		
+		$( "a:contains('상 품 검 색')" ).on("click" , function() {
+	 		$(self.location).attr("href","/product/listProduct?menu=search");
+		}); 
+		
+		$( ".Depth03:contains('최근 본 상품')" ).on("click" , function() {
+			 history();
+		}); 
+		
+	 });
+		
+		
 		
 	</script>  

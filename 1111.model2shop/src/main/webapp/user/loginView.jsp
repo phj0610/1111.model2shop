@@ -21,9 +21,17 @@
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
     	 body >  div.container{ 
-        	border: 3px solid #D6CDB7;
+        	border: 4px solid #ff00ae;
             margin-top: 10px;
         }
+        .btn{
+        	color:black;
+        }
+        
+        .btn:hover{
+        color:#943576
+        }
+    
     </style>
     
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -84,7 +92,7 @@
 		<div class="row">
 		
 			<div class="col-md-6">
-					<img src="/images/logo-spring.png" class="img-rounded" width="100%" />
+					<img src="/images/roo.png" class="img-rounded" width="100%" />
 			</div>
 	   	 	
 	 	 	<div class="col-md-6">
@@ -112,8 +120,8 @@
 					  
 					  <div class="form-group">
 					    <div class="col-sm-offset-4 col-sm-6 text-center">
-					      <button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-					      <a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+					      <button type="button" class="btn "   style="background-color: pink;">로 &nbsp;그 &nbsp;인</button>
+					      <a class="btn " href="#" role="button" style="background-color: pink;">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
 					    </div>
 					  </div>
 			
