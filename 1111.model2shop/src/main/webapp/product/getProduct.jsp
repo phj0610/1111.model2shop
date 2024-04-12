@@ -37,7 +37,7 @@
 	<script type="text/javascript">
 		
 	$(function(){
-		$("button") ).on("click" , function() {
+		$("button") .on("click" , function() {
 			self.location = "/product/listProduct?menu=${menu}"
 		});
 	});

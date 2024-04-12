@@ -70,7 +70,7 @@
    });
 
  $(document).ready(function() {
-	    $(".table_list").on("click", function() {
+	    $( "td:nth-child(2)").on("click", function() {
 	        var prodNo = $(this).find('input[type="hidden"]').val();
 	        if (prodNo) {
 	            window.location.href = "/product/getProduct?menu=${param.menu}&prodNo=" + prodNo;
@@ -78,14 +78,14 @@
 	    });
 	});
 
-           
+ 
            $(function() {
         	    $("td:nth-child(5) > i").on("click", function() {
         	        var prodNo = $(this).siblings('input[type="hidden"]').val();
         	        // hidden input을 추가하여 form에 'prodNo' 값을 함께 전송합니다.
         	        $(this).closest("form").append('<input type="hidden" name="prodNo" value="' + prodNo + '">');
         	        // form을 제출합니다.
-        	        alert(prodNo);
+        	       // alert(prodNo);
         	        $(this).closest("form").submit();
         	        
         	        $.ajax({
@@ -93,17 +93,17 @@
         	            method: "GET",
         	            dataType: "json",
         	            success: function(JSONData, status) {
-        	                alert(status);
+        	               // alert(status);
         	                
-        	                var displayValue = "<h6>" +
+        	                var displayValue = "<h5>" +
         	                    "상품명 : " + JSONData.prodName + "<br>" +
         	                    "상품상세정보 : " + JSONData.prodDetail + "<br>" +
         	                    "제조일자 : " + JSONData.manuDate + "<br>" +
         	                    "가격 : " + JSONData.price + "<br>" +
         	        
-        	                    "</h6>";
+        	                    "</h5>";
         	                
-        	                $("h6").remove();
+        	                $("h5").remove();
         	                $("#" + prodNo + "").html(displayValue);
         	            }
         	        });
@@ -195,9 +195,9 @@
 		  <c:set var="i" value="0" />
 		  <c:forEach var="product" items="${list}">
 			<c:set var="i" value="${ i+1 }" />
-			<tr class = "table_list">
+			<tr>
 			  <td align="center">${ i }</td>
-			  <td align="left"   title="Click : 회원정보 확인"  >${product.prodName}	  	
+			  <td align="left"   title="Click : 상품정보 확인"  >${product.prodName}	  	
 			  <input type="hidden" value="${product.prodNo}">
 			  </td>
 			  <td align="left">${product.price }</td>
