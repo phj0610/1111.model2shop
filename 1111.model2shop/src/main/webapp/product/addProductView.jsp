@@ -31,6 +31,10 @@
         .btn:hover{
         color:#943576
         }
+        
+        .form-control:focus{
+        	border-color:#943576
+        }
     
     </style>
     

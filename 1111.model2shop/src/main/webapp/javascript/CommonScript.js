@@ -461,3 +461,8 @@ function fncNumLengthCheck(value, first, last){
     function isTemDigit(c){
         return ((c >= "0") && (c <="9"))
     }
+    function fncGetList(currentPage){
+		document.getElementById("currentPage").value = currentPage;
+		document.detailForm.submit();
+		
+	}

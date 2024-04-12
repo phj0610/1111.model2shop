@@ -39,90 +39,95 @@
 	  body {
             padding-top : 50px;
         }
+        .form-control:focus{
+        	border-color:#943576
+        }
     </style>
-    
-     <!--  ///////////////////////// JavaScript ////////////////////////// -->
-	<script type="text/javascript">
-	
+   <script type="text/javascript">
    
-    function fncGetProductList(currentPage) {
-        $("#currentPage").val(page);
-        $("form").attr("method", "POST").attr("action", "/product/listProduct?menu=${param.menu}").submit();
-    }
-    
 
-      $(function(){
-      
-       $( "td.ct_btn01:contains('검색')" ).on("click" , function() {
-      //Debug..
-      alert(  $( "td.ct_btn01:contains('검색')" ).html() );
-      fncGetProductList(1);
+   function fncGetList(currentPage) {
+	      $("#currentPage").val(currentPage)
+	      $("form").attr("method" , "POST").attr("action" , "/product/listProduct?menu=${param.menu}").submit();
+	   }  
+   
+   
+   $(function() {
+	      // alert(1);
+	       $( "button" ).on("click" , function() {
+	         alert(1);
+	         fncGetList(1);   
+	      });
+	    });
+ 
+//이렇게 하면 검색 시 엔터 키 먹음
+ $( "input[name='searchKeyword']" ).keypress(function(event) {
+       // 엔터 키 코드는 13입니다.
+       if (event.which === 13) {
+           // 엔터 키가 눌렸을 때 검색 이벤트 실행
+          fncGetProductList(1);
+       }
    });
-   
-   //이렇게 하면 검색 시 엔터 키 먹음
-    $( "input[name='searchKeyword']" ).keypress(function(event) {
-          // 엔터 키 코드는 13입니다.
-          if (event.which === 13) {
-              // 엔터 키가 눌렸을 때 검색 이벤트 실행
-             fncGetProductList(1);
-          }
-      });
-   });
-   
-    $(function() {
-          $("td:nth-child(5) > i").on("click", function() {
 
-              var prodNo = $(this).find('input[name^="prodNo"]').val();
-   
-              $(this).append('<input type="hidden" name^="prodNo" value="' + prodNo + '">');
+ $(document).ready(function() {
+	    $(".table_list").on("click", function() {
+	        var prodNo = $(this).find('input[type="hidden"]').val();
+	        if (prodNo) {
+	            window.location.href = "/product/getProduct?menu=${param.menu}&prodNo=" + prodNo;
+	        }
+	    });
+	});
 
-              
-              $.ajax(
-                    {
-                       url : "/product/json/getProduct/"+prodNo+"/${menu}" ,
-                     method : "GET" ,
-                     dataType : "json" ,
-                     headers : {
-                        "Accept" : "application/json",
-                        "Content-Type" : "application/json"
-                     },
-                     success : function(JSONData , status) {
-                        alert(status);
-                        
-                        var displayValue = "<h8>"
-                                                +"상품명 : "+JSONData.prodName+ "<br/>"
-                                                +"상세정보 : "+JSONData.prodDetail+ "<br/>"
-                                                +"가격 : "+JSONData.price+ "<br/>"
-                                                +"등록일 : "+JSONData.manuDate+ "<br/>"
-                                                +"상품번호 : "+JSONData.prodNo+ "<br/>"
-                                                +"</h8>";
-                                                
-                        $("h8").remove();
-                        $( "#"+prodNo+"" ).html(displayValue);   
-                     }
-                    });
-             /*  self.location="/product/getProduct?menu=${param.menu}&prodNo="+prodNo;
-          */
+           
+           $(function() {
+        	    $("td:nth-child(5) > i").on("click", function() {
+        	        var prodNo = $(this).siblings('input[type="hidden"]').val();
+        	        // hidden input을 추가하여 form에 'prodNo' 값을 함께 전송합니다.
+        	        $(this).closest("form").append('<input type="hidden" name="prodNo" value="' + prodNo + '">');
+        	        // form을 제출합니다.
+        	        alert(prodNo);
+        	        $(this).closest("form").submit();
+        	        
+        	        $.ajax({
+        	            url: "/product/json/getProduct/" + prodNo + "/${menu}",
+        	            method: "GET",
+        	            dataType: "json",
+        	            success: function(JSONData, status) {
+        	                alert(status);
+        	                
+        	                var displayValue = "<h6>" +
+        	                    "상품명 : " + JSONData.prodName + "<br>" +
+        	                    "상품상세정보 : " + JSONData.prodDetail + "<br>" +
+        	                    "제조일자 : " + JSONData.manuDate + "<br>" +
+        	                    "가격 : " + JSONData.price + "<br>" +
+        	        
+        	                    "</h6>";
+        	                
+        	                $("h6").remove();
+        	                $("#" + prodNo + "").html(displayValue);
+        	            }
+        	        });
+        	    });
+        	
 
-          }); 
-          
-
-       //==> userId LINK Event End User 에게 보일수 있도록 
-
-      $( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
-      $("h7").css("color" , "red");
       
-      //==> 아래와 같이 정의한 이유는 ??
-      $(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
-   });   
-<!--  <a href="/product/${ menuType eq 'manage' ? 'updateProduct' : 'getProduct'}?prodNo=${ product.prodNo }&menu=${param.menu}"  -->
+
+    //==> userId LINK Event End User 에게 보일수 있도록 
+
+  	$( "td:nth-child(2)" ).css("color" , "#943576");
    
+   //==> 아래와 같이 정의한 이유는 ??
+   $(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
+});   
+ 
 </script>
 
 </head>
 
-<body>
-	
+<body >
+
+
+
 	<!-- ToolBar Start /////////////////////////////////////-->
 	<jsp:include page="/layout/toolbar.jsp" />
    	<!-- ToolBar End /////////////////////////////////////-->
@@ -134,10 +139,10 @@
 	       <h3>상품목록조회</h3>
 	    </div>
 	    
-
-    <div class="row">
-    
-        <div class="col-md-6 text-left">
+	    <!-- table 위쪽 검색 Start /////////////////////////////////////-->
+	    <div class="row">
+	    
+		    <div class="col-md-6 text-left">
 		    	<p class="text-primary">
 		    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
 		    	</p>
@@ -145,17 +150,8 @@
 		    
 		    <div class="col-md-6 text-right">
 			    <form class="form-inline" name="detailForm">
-
-				          <c:choose>
-          <c:when test="${param.menu != null && param.menu == 'manage'}">
-              상품 관리
-          </c:when>
-          <c:when test="${param.menu == null || param.menu == 'null' || param.menu == 'search'}">
-              상품 목록조회
-          </c:when>
-      </c:choose>
-
-  <div class="form-group">
+			    
+				  <div class="form-group">
 				    <select class="form-control" name="searchCondition" >
 						<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>상품번호</option>
 						<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
@@ -178,8 +174,11 @@
 	    	</div>
 	    	
 		</div>
-           
-           <table class="table table-hover table-striped" >
+		<!-- table 위쪽 검색 Start /////////////////////////////////////-->
+		
+		
+      <!--  table Start /////////////////////////////////////-->
+      <table class="table table-hover table-striped" >
       
         <thead>
           <tr>
@@ -187,7 +186,7 @@
             <th align="left" >상품명</th>
             <th align="left">가격</th>
             <th align="left">등록일</th>
-            <th align="left">현재상태</th>
+            <th align="left">간략정보</th>
           </tr>
         </thead>
        
@@ -196,13 +195,11 @@
 		  <c:set var="i" value="0" />
 		  <c:forEach var="product" items="${list}">
 			<c:set var="i" value="${ i+1 }" />
-			<tr>
+			<tr class = "table_list">
 			  <td align="center">${ i }</td>
-			   <td align="left">
-               
-                  <input type="hidden" name="prodNo" value="${product.prodNo}">
-                      ${product.prodName} </td>   
-                      
+			  <td align="left"   title="Click : 회원정보 확인"  >${product.prodName}	  	
+			  <input type="hidden" value="${product.prodNo}">
+			  </td>
 			  <td align="left">${product.price }</td>
 			  <td align="left">${product.regDate}</td>
 			  <td align="left">
@@ -222,10 +219,10 @@
  	
  	
  	<!-- PageNavigation Start... -->
-	<jsp:include page="../common/listpageNavigator.jsp"/>
+	 <jsp:include page="../common/pageNavigator_new.jsp"/>   
 	<!-- PageNavigation End... -->
 	
 </body>
 
 </html>
-       
+

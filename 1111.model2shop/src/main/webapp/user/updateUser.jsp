@@ -33,6 +33,10 @@
 		body {
             padding-top : 50px;
         }
+        
+        .form-control:focus{
+        	border-color:#943576
+        }
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->

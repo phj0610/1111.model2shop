@@ -6,13 +6,15 @@
 
 
 <!-- ToolBar Start /////////////////////////////////////-->
-<div class="navbar  navbar-inverse navbar-fixed-top">
-	
-	<div class="container">
-	       
-		<a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container"> 
+	<a class="navbar-brand" href="/index.jsp"><img src="/images/rooroo.jpg" alt="Logo" width="20" >
+	</a>
+ <!-- <img src="/images/rooroo.jpg" alt="Logo" width="30" height="24"> -->
+		<a class="navbar-brand" href="/index.jsp">
+		 Model2 MVC Shop
+		</a>
 		
-		<!-- toolBar Button Start //////////////////////// -->
 		<div class="navbar-header">
 		    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#target">
 		        <span class="sr-only">Toggle navigation</span>

@@ -24,6 +24,10 @@
         	border: 3px solid #D6CDB7;
             margin-top: 10px;
         }
+        
+        .form-control:focus{
+        	border-color:#943576
+        }
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
