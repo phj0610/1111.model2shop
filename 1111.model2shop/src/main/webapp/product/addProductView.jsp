@@ -21,7 +21,7 @@
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
          	 body >  div.container{ 
-        	border: 4px solid #ff00ae;
+        	border: 4px solid #943576;
             margin-top: 10px;
         }
         .btn{
@@ -75,13 +75,13 @@ $("form").attr("method" , "POST").attr("action" , "/product/addProduct").submit(
 
 $(function() {
     // "등록" 버튼 클릭 이벤트
-    $("td.ct_btn01:contains('등록')").on("click", function() {
+    $("button").on("click", function() {
         fncAddProduct();
     });
 });
     $(function() {
     // "취소" 버튼 클릭 이벤트
-    $("td.ct_btn01:contains('취소')").on("click", function() {
+    $("a").on("click", function() {
         $("form")[0].reset(); // 폼 리셋
     });
 });
@@ -93,17 +93,12 @@ $(function() {
 
 <body>
 
-	<div class="navbar  navbar-default">
-        <div class="container">
-        	<a class="navbar-brand" href="/index.jsp">Model2 MVC Shop</a>
-   		</div>
-   	</div>
-   	
+<jsp:include page="/layout/toolbar.jsp" />
    	
 
-	<div class="container">
 	
-		<h1 class="bg text-center" >상품등록</h1>
+	<br/>
+		<h2 class="bg text-center" >상품등록하기~~</h2><br/>
 	
 	<form class="form-horizontal">
 		   		<div class="form-group">
@@ -123,9 +118,11 @@ $(function() {
 		 <div class="form-group">
 		    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 		    <div class="col-sm-4">
-		      <input type="date" class="form-control" id="manuDate" name="manuDate" placeholder="제조일자">
+		      <input type="date" class="form-control" id="manuDate" name="manuDate" placeholder="제조일자" >
 		    </div>
 		  </div>
+		  
+		  
 
 		<div class="form-group">
 		    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
@@ -143,7 +140,7 @@ $(function() {
 			
 	 <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" style="background-color: pink; "class="btn "  >등&nbsp;록</button>
+		      <button type="button" style="background-color: pink; "class="btn"  >등&nbsp;록</button>
 			  <a class="btn" style="background-color: pink;" role="button">취&nbsp;소</a>
 		    </div>
 		  </div>

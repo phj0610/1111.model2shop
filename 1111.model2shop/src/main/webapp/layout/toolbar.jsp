@@ -12,7 +12,7 @@
 	</a>
  <!-- <img src="/images/rooroo.jpg" alt="Logo" width="30" height="24"> -->
 		<a class="navbar-brand" href="/index.jsp">
-		 Model2 MVC Shop
+		 Zanmang Loopy
 		</a>
 		
 		<div class="navbar-header">
@@ -140,12 +140,13 @@
 	 		$(self.location).attr("href","/product/listProduct?menu=search");
 		}); 
 		
-		$( ".Depth03:contains('최근 본 상품')" ).on("click" , function() {
-			 history();
+		$( "a:contains('최근 본 상품')" ).on("click" , function() {
+			 history(1);
 		}); 
 		
 	 });
 		
-		
-		
+		 	function history(){
+		 		popWin = window.open("/history.jsp","popWin","left=300, top=200, width=300, height=200, marginwidth=0, marginheight=0, scrollbars=no, scrolling=no, menubar=no, resizable=no");
+		 	}
 	</script>  
